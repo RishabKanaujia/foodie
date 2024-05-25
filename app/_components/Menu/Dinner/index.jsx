@@ -1,6 +1,6 @@
 import React from "react";
 
-const Dinner = () => {
+const Dinner = ({foodDataDinnerList}) => {
   let menuArr = [
     {
       dishName: "Dinner",
@@ -20,15 +20,15 @@ const Dinner = () => {
   ];
   return (
     <>
-      {menuArr.map((item, index) => {
+      {foodDataDinnerList.map((item, index) => {
         return (
           <div
             key={index}
             className="bg-white py-8 flex flex-col justify-start items-center gap-5 rounded-[40px] h-[580px] w-[304px]"
           >
             <img
-              className="w-[250px] h-[250px]"
-              src="https://pngimg.com/uploads/pasta/pasta_PNG67.png"
+              className="w-[250px] h-[250px] rounded-full object-cover"
+              src={item.Food_image}
               alt=""
             />
             <h2 className="text-[30px] font-semibold text-[#311f09] ">

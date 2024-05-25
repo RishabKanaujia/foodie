@@ -5,9 +5,14 @@ import FavDish from "./_components/FavDish";
 import ChefPage from "./_components/ChefPage";
 import Review from "./_components/Review";
 import OpenCard from "./_components/OpenCard";
-import Footer from "./Footer";
+import Footer from "./_components/Footer";
+import { getFoodData, getFoodDataDinner } from "./api/foodEntry/route";
 
-export default function Home() {
+export default async function Home() {
+
+  const foodDataList = await getFoodData()
+  const foodDataDinnerList = await getFoodDataDinner()
+
   return (
     <>
       <div className="h-90 bg-gradient-to-b from-[#F8DEDE] to-white">
@@ -16,7 +21,7 @@ export default function Home() {
       </div>
       <div className="bg-[#F9F9F9]">
         <FavDish />
-        <Menu />
+        <Menu foodDataList={foodDataList} foodDataDinnerList={foodDataDinnerList} />
         <ChefPage />
         <Review />
         <OpenCard />

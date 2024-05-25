@@ -1,19 +1,17 @@
-"use client"
+"use client";
 
-import React, { useState }  from "react";
+import React, { useState } from "react";
 import Dinner from "./Dinner";
 import Lunch from "./Lunch";
 import Dessert from "./Dessert";
 import AllCategory from "./AllCategory";
 
-const Menu = () => {
-
+const Menu = ({ foodDataList, foodDataDinnerList }) => {
   const [selectCategory, setSelectCategory] = useState("all");
 
-
-  const handleClick = (category)=>{
-    setSelectCategory(category)
-  }
+  const handleClick = (category) => {
+    setSelectCategory(category);
+  };
 
   return (
     <>
@@ -22,25 +20,47 @@ const Menu = () => {
           Our Popular Menu
         </h1>
         <div className="flex gap-24 my-10">
-          <button className="hover:bg-[#f54748] bg-[#F5F5F5] text-[#311f09] rounded-[16px] font-normal text-[20px] hover:text-white h-[72px] px-12" onClick={()=>{handleClick("all")}}>
+          <button
+            className="hover:bg-[#f54748] bg-[#F5F5F5] text-[#311f09] rounded-[16px] font-normal text-[20px] hover:text-white h-[72px] px-12"
+            onClick={() => {
+              handleClick("all");
+            }}
+          >
             All catagory
           </button>
-          <button className="hover:bg-[#f54748] bg-[#F5F5F5] text-[#311f09] rounded-[16px] font-normal text-[20px] hover:text-white h-[72px] px-12" onClick={()=>{handleClick("dinner")}}>
+          <button
+            className="hover:bg-[#f54748] bg-[#F5F5F5] text-[#311f09] rounded-[16px] font-normal text-[20px] hover:text-white h-[72px] px-12"
+            onClick={() => {
+              handleClick("dinner");
+            }}
+          >
             Dinner
           </button>
-          <button className="hover:bg-[#f54748] bg-[#F5F5F5] text-[#311f09] rounded-[16px] font-normal text-[20px] hover:text-white h-[72px] px-12" onClick={()=>{handleClick("lunch")}}>
+          <button
+            className="hover:bg-[#f54748] bg-[#F5F5F5] text-[#311f09] rounded-[16px] font-normal text-[20px] hover:text-white h-[72px] px-12"
+            onClick={() => {
+              handleClick("lunch");
+            }}
+          >
             Lunch
           </button>
-          <button className="hover:bg-[#f54748] bg-[#F5F5F5] text-[#311f09] rounded-[16px] font-normal text-[20px] hover:text-white h-[72px] px-12" onClick={()=>{handleClick("dessert")}}>
+          <button
+            className="hover:bg-[#f54748] bg-[#F5F5F5] text-[#311f09] rounded-[16px] font-normal text-[20px] hover:text-white h-[72px] px-12"
+            onClick={() => {
+              handleClick("dessert");
+            }}
+          >
             Dessert
           </button>
         </div>
       </div>
       <div className="flex justify-center gap-6 flex-wrap px-20">
-       {selectCategory === "all" && <AllCategory/>}
-       {selectCategory === "dinner" && <Dinner/>}
-       {selectCategory === "lunch" && <Lunch/>}
-       {selectCategory === "dessert" && <Dessert/>}
+        {selectCategory === "all" && (
+          <AllCategory foodDataList={foodDataList} />
+        )}
+        {selectCategory === "dinner" && <Dinner foodDataDinnerList={foodDataDinnerList} />}
+        {selectCategory === "lunch" && <Lunch />}
+        {selectCategory === "dessert" && <Dessert />}
       </div>
     </>
   );

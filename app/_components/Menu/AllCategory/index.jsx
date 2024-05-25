@@ -1,34 +1,35 @@
-import React from 'react'
+import React from "react";
 
-const AllCategory = () => {
-    let menuArr = [
-        {
-          dishName: "All Category",
-          discription: "ata hehehhahahlslls sfasfasf",
-          price: "$1.05",
-        },
-        {
-          dishName: "dall",
-          discription: "daal ghddd sfasfasf",
-          price: "$2.05",
-        },
-        {
-          dishName: "thht",
-          discription: "ahlslls sfasfasf",
-          price: "$10.05",
-        },
-      ];
+const AllCategory = ({ foodDataList }) => {
+  let menuArr = [
+    {
+      dishName: "All Category",
+      discription: "ata hehehhahahlslls sfasfasf",
+      price: "$1.05",
+    },
+    {
+      dishName: "dall",
+      discription: "daal ghddd sfasfasf",
+      price: "$2.05",
+    },
+    {
+      dishName: "thht",
+      discription: "ahlslls sfasfasf",
+      price: "$10.05",
+    },
+  ];
   return (
     <>
-      {menuArr.map((item, index) => {
+      {foodDataList.map((item, index) => {
         return (
           <div
             key={index}
             className="bg-white py-8 flex flex-col justify-start items-center gap-5 rounded-[40px] h-[580px] w-[304px]"
           >
             <img
-              className="w-[250px] h-[250px]"
-              src="https://pngimg.com/uploads/pasta/pasta_PNG67.png"
+              // width={250} height={250}
+              className="w-[250px] h-[250px] rounded-full object-cover"
+              src={item.Food_image}
               alt=""
             />
             <h2 className="text-[30px] font-semibold text-[#311f09] ">
@@ -48,7 +49,7 @@ const AllCategory = () => {
         );
       })}
     </>
-  )
-}
+  );
+};
 
-export default AllCategory
+export default AllCategory;

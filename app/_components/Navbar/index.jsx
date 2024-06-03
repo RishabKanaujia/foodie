@@ -1,16 +1,23 @@
+'use client'
+
 import React from "react";
 import Link from "next/link";
 import Logo from '/public/Logo/logo.svg'
 import Image from "next/image";
+import { useRouter } from 'next/navigation'
 
 const Navbar = () => {
+
+  const router = useRouter()
+
   return (
     <>
       <div className="py-10 ">
-        <nav className="flex justify-center gap-20">
+        <nav className="flex justify-center gap-20 cursor-pointer">
           <Image width={100} height={100}
             className="w-fit h-fit"
             src={Logo}
+            onClick={() => router.push('/')}
           />
 
           <ul className="flex gap-5 justify-center text-[#311f09cc] items-center text-[16px] font-normal">
@@ -27,7 +34,7 @@ const Navbar = () => {
               <Link href="/Order online">Order online</Link>
             </li>
             <li className="hover:text-[#f54748] hover:underline underline-offset-8">
-              <Link href="/Reservation">Reservation</Link>
+              <Link href="/pages/Reservation">Reservation</Link>
             </li>
             <li className="hover:text-[#f54748] hover:underline underline-offset-8">
               <Link href="/Contact us">Contact us</Link>

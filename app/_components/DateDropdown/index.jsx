@@ -66,13 +66,13 @@ const DatePickerDropdown = ({label,options,onChange,value}) => {
     <div className="flex w-full relative">
     {/* <label className="text-[20px] font-semibold text-[#311f09]">time</label> */}
     <select
-      className="bg-white appearance-none border border-[#c4c4c4] flex justify-between text-[#a0978c] text-[20px] rounded-[20px] w-full p-8"
+      className="bg-white appearance-none border border-[#c4c4c4] flex justify-between text-[#a0978c] text-[20px] rounded-[20px] w-full h-[100px] p-8"
       value={value}
       onChange={(e) => onChange(e.target.value)}
     >
       <option value="" disabled>{label}</option>
       {data.map((option, index) => (
-        <option key={index} value={option}>{option}</option>
+        <option  key={index} value={option}>{option}</option>
       ))}
     </select>
     <div className="pointer-events-none absolute inset-y-0 right-4 flex items-center px-2 text-gray-700">

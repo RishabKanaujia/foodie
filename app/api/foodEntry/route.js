@@ -9,7 +9,7 @@ export async function POST(req) {
 }
 
 export async function getFoodData(){
-  const data = await food.find()
+  const data = await food.find().lean()
   return data;
   }
 export async function getFoodDataDinner(){

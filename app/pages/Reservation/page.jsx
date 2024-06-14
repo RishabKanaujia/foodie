@@ -3,38 +3,73 @@
 import React, { useState } from "react";
 import Navbar from "../../_components/Navbar";
 import Footer from "../../_components/Footer";
-import Dropdown from "@/app/_components/Dropdown/index";
-import DatePickerDropdown from "@/app/_components/DateDropdown";
 import axios from "axios";
 
+import { useRouter } from "next/navigation";
+
 const Reservation = () => {
-  const [selectedDate, setSelectedDate] = useState("");
-  const [selectedTime, setSelectedTime] = useState("");
-  const [selectedPartySize, setSelectedPartySize] = useState("");
+  const [date, setDate] = useState("");
+  const [time, setTime] = useState("");
+  const [partySize, setPartySize] = useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (setDate === "" || setTime === "" || setPartySize === "") {
+      return alert("Please enter Booking details");
+    } else {
+      try {
+        const response = await axios.post("/api/booking", {
+          date: date,
+          time: time,
+          partySize: partySize,
+        });
+
+        if (response.status === 200) {
+          alert("Booking saved successfully");
+          router.push("/pages/ReservationDetails");
+        } else {
+          alert("Failed to save booking");
+        }
+      } catch (error) {
+        console.error("Error:", error);
+        alert("An error occurred while saving the booking");
+      }
+    }
+    console.log({ date, time, partySize });
+  };
 
   const data = generateTimeSlots();
+  const router = useRouter();
 
-  const handleSubmit = async () => {
-    // event.preventDefault();
-    try {
-      const response = await axios.post("/api/booking", {
-        date: selectedDate,
-        time: selectedTime,
-        partySize: selectedPartySize,
-      });
+  // const handleSubmit = async () => {
+  //   if (
+  //     selectedDate === "" ||
+  //     selectedTime === "" ||
+  //     selectedPartySize === ""
+  //   ) {
+  //     return alert("Please enter Booking details");
+  //   } else {
+  //     // event.preventDefault();
+  //     try {
+  //       const response = await axios.post("/api/booking", {
+  //         date: selectedDate,
+  //         time: selectedTime,
+  //         partySize: selectedPartySize,
+  //       });
 
-      if (response.status === 200) {
-        alert("Booking saved successfully");
-      } else {
-        alert("Failed to save booking");
-      }
-    } catch (error) {
-      console.error("Error:", error);
-      alert("An error occurred while saving the booking");
-    }
-
-    //  console.log(name,price,description,imageUrl)
-  };
+  //       if (response.status === 200) {
+  //         alert("Booking saved successfully");
+  //         router.push("/pages/ReservationDetails");
+  //       } else {
+  //         alert("Failed to save booking");
+  //       }
+  //     } catch (error) {
+  //       console.error("Error:", error);
+  //       alert("An error occurred while saving the booking");
+  //     }
+  //   }
+  //   //  console.log(name,price,description,imageUrl)
+  // };
 
   // const handleSubmit = async () => {
   //   const bookingDetails = {
@@ -113,7 +148,46 @@ const Reservation = () => {
             <h1 className="text-[70px] font-bold text-[#311f09] ">
               Book a table
             </h1>
-            <DatePickerDropdown
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div>
+                <label className="block text-gray-700">Date</label>
+                <input
+                  type="date"
+                  value={date}
+                  onChange={(e) => setDate(e.target.value)}
+                  className="w-full p-2 border border-gray-300 rounded mt-1"
+                  required
+                />
+              </div>
+              <div>
+                <label className="block text-gray-700">Time</label>
+                <input
+                  type="time"
+                  value={time}
+                  onChange={(e) => setTime(e.target.value)}
+                  className="w-full p-2 border border-gray-300 rounded mt-1"
+                  required
+                />
+              </div>
+              <div>
+                <label className="block text-gray-700">Party Size</label>
+                <input
+                  type="number"
+                  value={partySize}
+                  onChange={(e) => setPartySize(e.target.value)}
+                  className="w-full p-2 border border-gray-300 rounded mt-1"
+                  min="1"
+                  required
+                />
+              </div>
+              <button
+                type="submit"
+                className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600 transition duration-200"
+              >
+                Submit
+              </button>
+            </form>
+            {/* <DatePickerDropdown
               label="Date"
               value={selectedDate}
               onChange={setSelectedDate}
@@ -125,31 +199,19 @@ const Reservation = () => {
               value={selectedTime}
               onChange={setSelectedTime}
             />
-            {/* <div className="flex flex-col">
-      <label className="text-[20px] font-semibold text-[#311f09]">time</label>
-      <select
-        className="border border-gray-300 text-[#a0978c] text-[20px] rounded-[20px] p-2.5"
-        value={selectedTime}
-        onChange={(e) => setSelectedTime(e.target.value)}
-      >
-        <option value="" disabled>Select</option>
-        {data.map((option, index) => (
-          <option key={index} value={option}>{option}</option>
-        ))}
-      </select>
-    </div> */}
+
             <Dropdown
               label="Party size"
               options={generateArray()}
               value={selectedPartySize}
               onChange={setSelectedPartySize}
-            />
-            <button
+            /> */}
+            {/* <button
               onClick={handleSubmit}
               className="bg-[#f54748] rounded-[20px] h-[100px] font-semibold text-[25px] text-white  px-12"
             >
               Book now
-            </button>
+            </button> */}
           </div>
         </div>
         <Footer />

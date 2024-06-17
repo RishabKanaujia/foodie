@@ -33,7 +33,7 @@ const Navbar = () => {
               <Link href="/Order online">Order online</Link>
             </li>
             <li className="hover:text-[#f54748] hover:underline underline-offset-8">
-              <Link href="/pages/Reservation">Reservation</Link>
+              <Link href="/Reservation">Reservation</Link>
             </li>
             <li className="hover:text-[#f54748] hover:underline underline-offset-8">
               <Link href="/Contact us">Contact us</Link>

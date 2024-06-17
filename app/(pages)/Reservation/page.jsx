@@ -26,7 +26,7 @@ const Reservation = () => {
 
         if (response.status === 200) {
           alert("Booking saved successfully");
-          router.push("/pages/ReservationDetails");
+          router.push("/ReservationDetails");
         } else {
           alert("Failed to save booking");
         }
@@ -35,10 +35,10 @@ const Reservation = () => {
         alert("An error occurred while saving the booking");
       }
     }
-    console.log({ date, time, partySize });
+    // console.log({ date, time, partySize });
   };
 
-  const data = generateTimeSlots();
+  // const data = generateTimeSlots();
   const router = useRouter();
 
   // const handleSubmit = async () => {
@@ -182,7 +182,7 @@ const Reservation = () => {
               </div>
               <button
                 type="submit"
-                className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600 transition duration-200"
+                className="w-full bg-[#f54748] text-white p-2 rounded !mt-5 transition duration-200"
               >
                 Submit
               </button>

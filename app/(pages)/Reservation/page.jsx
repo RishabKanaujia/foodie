@@ -6,11 +6,13 @@ import Footer from "../../_components/Footer";
 import axios from "axios";
 
 import { useRouter } from "next/navigation";
+import ReservationDetails from "../ReservationDetails/page";
 
 const Reservation = () => {
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
   const [partySize, setPartySize] = useState("");
+  const [showReservation, setShowReservation] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -26,7 +28,8 @@ const Reservation = () => {
 
         if (response.status === 200) {
           alert("Booking saved successfully");
-          router.push("/ReservationDetails");
+          // router.push("/ReservationDetails");
+          setShowReservation(true);
         } else {
           alert("Failed to save booking");
         }
@@ -38,105 +41,17 @@ const Reservation = () => {
     // console.log({ date, time, partySize });
   };
 
-  // const data = generateTimeSlots();
   const router = useRouter();
-
-  // const handleSubmit = async () => {
-  //   if (
-  //     selectedDate === "" ||
-  //     selectedTime === "" ||
-  //     selectedPartySize === ""
-  //   ) {
-  //     return alert("Please enter Booking details");
-  //   } else {
-  //     // event.preventDefault();
-  //     try {
-  //       const response = await axios.post("/api/booking", {
-  //         date: selectedDate,
-  //         time: selectedTime,
-  //         partySize: selectedPartySize,
-  //       });
-
-  //       if (response.status === 200) {
-  //         alert("Booking saved successfully");
-  //         router.push("/pages/ReservationDetails");
-  //       } else {
-  //         alert("Failed to save booking");
-  //       }
-  //     } catch (error) {
-  //       console.error("Error:", error);
-  //       alert("An error occurred while saving the booking");
-  //     }
-  //   }
-  //   //  console.log(name,price,description,imageUrl)
-  // };
-
-  // const handleSubmit = async () => {
-  //   const bookingDetails = {
-  //     date: selectedDate,
-  //     time: selectedOption,
-  //     partySize: selectedPartySize,
-  //   };
-
-  //   try {
-  //     const response = await fetch("/api/booking", {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify(bookingDetails),
-  //     });
-
-  //     if (response.ok) {
-  //       alert("Booking saved successfully");
-  //     } else {
-  //       alert("Failed to save booking");
-  //     }
-  //   } catch (error) {
-  //     console.error("Error:", error);
-  //     alert("An error occurred while saving the booking");
-  //   }
-  // };
-
-  function generateTimeSlots() {
-    const startHour = 8;
-    const endHour = 21;
-    const interval = 30;
-    const times = [];
-
-    for (let hour = startHour; hour <= endHour; hour++) {
-      for (let minutes = 0; minutes < 60; minutes += interval) {
-        let formattedHour = hour % 12 === 0 ? 12 : hour % 12;
-        let period = hour < 12 ? "AM" : "PM";
-        let formattedMinutes = minutes === 0 ? "00" : minutes;
-        times.push(`${formattedHour}:${formattedMinutes} ${period}`);
-      }
-    }
-
-    return times;
-  }
-
-  function generateArray() {
-    const array = [];
-    for (let i = 1; i <= 10; i++) {
-      array.push(i);
-    }
-    return array;
-  }
-  const generateDates = () => {
-    const dates = [];
-    const today = new Date();
-    for (let i = 0; i < 30; i++) {
-      const date = new Date(today);
-      date.setDate(today.getDate() + i);
-      dates.push(date.toISOString().split("T")[0]);
-    }
-    return dates;
+  const closePopup = () => {
+    setShowReservation(false);
   };
-
   return (
     <>
-      <div className="bg-[#F9F9F9]">
+      <div
+        className={`bg-[#F9F9F9] ${
+          showReservation ? "blur-sm relative bg-black bg-opacity-50" : ""
+        }`}
+      >
         <Navbar />
         <div className="flex justify-evenly gap-5 p-5 mb-20">
           <img
@@ -187,35 +102,16 @@ const Reservation = () => {
                 Submit
               </button>
             </form>
-            {/* <DatePickerDropdown
-              label="Date"
-              value={selectedDate}
-              onChange={setSelectedDate}
-              options={generateDates()}
-            />
-            <Dropdown
-              label="Time"
-              options={generateTimeSlots()}
-              value={selectedTime}
-              onChange={setSelectedTime}
-            />
-
-            <Dropdown
-              label="Party size"
-              options={generateArray()}
-              value={selectedPartySize}
-              onChange={setSelectedPartySize}
-            /> */}
-            {/* <button
-              onClick={handleSubmit}
-              className="bg-[#f54748] rounded-[20px] h-[100px] font-semibold text-[25px] text-white  px-12"
-            >
-              Book now
-            </button> */}
           </div>
         </div>
+
         <Footer />
       </div>
+      {showReservation && (
+        <div className="absolute inset-0 flex items-center justify-center h-fit z-50">
+          <ReservationDetails closePopup={closePopup} />
+        </div>
+      )}
     </>
   );
 };

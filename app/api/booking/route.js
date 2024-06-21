@@ -19,3 +19,12 @@ export async function GET() {
     return NextResponse.json({ success: false, error: error.message });
   }
 }
+
+export async function DELETE() {
+  try {
+    const data = await booking.findOneAndDelete().sort({ _id: -1 }).lean();
+    return NextResponse.json({ success: true, data });
+  } catch (error) {
+    return NextResponse.json({ success: false, error: error.message });
+  }
+}

@@ -1,16 +1,17 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import Link from "next/link";
 import { IoMdClose } from "react-icons/io";
 import { SlCalender } from "react-icons/sl";
 import { FiClock } from "react-icons/fi";
 import { MdOutlineMan4 } from "react-icons/md";
 import axios from "axios";
+import ConfirmReservation from '../confirmReservation/page';
 
-const ReservationDetails = () => {
+const ReservationDetails = ({closePopup}) => {
 
   const [bookingData, setBookingData] = useState(null);
+  const [showConfirm, setShowConfirm] = useState(false);
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -42,6 +43,7 @@ const ReservationDetails = () => {
       const response = await axios.post('/api/bookingUserDetails', formData);
       if (response.data.success) {
         alert('Reservation submitted successfully!');
+        setShowConfirm(true)
         // Optionally, clear the form or handle success state
       } else {
         alert('Error submitting reservation: ' + response.data.error);
@@ -60,26 +62,28 @@ const ReservationDetails = () => {
 
   return (
     <>
-    <div className="inset-0 bg-black bg-opacity-50 flex items-center justify-center h-fit z-50 p-10" >
+    <div className="inset-0 bg-opacity-50 flex items-center justify-center h-fit z-50 p-10" >
     <div className="bg-[#FFFFFF] rounded-lg shadow-lg ">
         <div className="flex flex-col items-center gap-5 justify-center">
           <div className="relative flex items-center justify-center w-full">
             <h1 className="text-[36px] font-bold text-[#311f09] my-2">
               Reservation
             </h1>
-            <Link href="/Reservation">
-             <button className="absolute right-5 top-5">
+            <button
+              className="absolute right-5 top-5"
+              onClick={closePopup}
+            >
               <IoMdClose size={30} />
-            </button></Link>
+            </button>
           </div>
 
-          <p className="bg-[#8ae9ff66] text-[20px] font-normal px-[250px] py-[20px] rounded-[20px]">
+          <p className="bg-[#8ae9ff66] text-[20px] font-normal px-[100px] py-[20px] rounded-[20px]">
             Due to limited availability, we can hold this table for you for
             <span className="font-semibold px-2">5:00 minutes</span>
           </p>
         </div>
-        <div className="flex justify-around  my-10">
-          <div className="p-5 w-[500px] flex flex-col gap-5">
+        <div className="flex justify-around ">
+          <div className="p-10 w-[500px] flex flex-col gap-5">
             <h1 className="text-[25px] font-semibold">Data order</h1>
             <form className="space-y-4" onSubmit={handleSubmit}>
             <input
@@ -148,17 +152,17 @@ const ReservationDetails = () => {
           </div>
           {bookingData ? (
             <div>
-              <div className="bg-[#d0ccc719] p-5 w-[500px] rounded-md">
-                <h1 className=" text-[25px] font-semibold mb-5">
+              <div className="bg-[#d0ccc719] my-10 p-5 mr-5 w-[500px] rounded-md">
+                <h1 className=" text-[22px] font-semibold mb-2">
                   Reservation detail
                 </h1>
-                <div className="flex justify-between items-center my-5 text-[#5c4529] text-[20px] font-normal ">
+                <div className="flex justify-between items-center my-2 text-[#5c4529] text-[20px] font-normal ">
                   <p>
                     <SlCalender size={25} />
                   </p>
                   <p>{bookingData.date}</p>
                 </div>
-                <div className="flex justify-between items-center my-5 text-[#5c4529] text-[20px] font-normal">
+                <div className="flex justify-between items-center my-2 text-[#5c4529] text-[20px] font-normal">
                   <p>
                     <FiClock size={25} />
                   </p>
@@ -171,11 +175,11 @@ const ReservationDetails = () => {
                   <p>{bookingData.partySize} people (Standard seating)</p>
                 </div>
               </div>
-              <div className="p-5 w-[500px] my-5 rounded-md">
+              <div className="p-5 w-[500px] rounded-md">
                 <h1 className=" text-[25px] font-semibold mb-5">
                   Restaurant information
                 </h1>
-                <div className="flex justify-between items-center text-[#5c4529] text-[20px] font-normal">
+                <div className="flex justify-between items-center text-[#5c4529] text-[18px] font-normal">
                   <p>
                     Sed ut perspiciatis unde omnis iste natus error sit voluptatem
                     accusantium doloremque laudantium, totam rem aperiam, eaque
@@ -191,7 +195,11 @@ const ReservationDetails = () => {
         </div>
       </div>
     </div>
-      
+    {showConfirm && (
+        <div className="absolute inset-0 flex items-center justify-center h-fit z-50">
+          <ConfirmReservation bookingData={bookingData} closePopup={closePopup} />
+        </div>
+      )}
     </>
   );
 };

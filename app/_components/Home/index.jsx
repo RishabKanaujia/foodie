@@ -21,7 +21,7 @@ const HomeContent = () => {
         </p>
         <div className="py-5 flex gap-5">
           <button className="bg-[#f54748] rounded-[16px] font-semibold text-[20px] text-white h-[72px] px-12">Order now</button>
-          <button className="bg-[#f5474819] rounded-[16px] font-semibold text-[20px] text-[#f54748] h-[72px] px-12" onClick={() => router.push('/pages/Reservation')}>Reservation</button>
+          <button className="bg-[#f5474819] rounded-[16px] font-semibold text-[20px] text-[#f54748] h-[72px] px-12" onClick={() => router.push('/Reservation')}>Reservation</button>
         </div>
         </div>
      

@@ -6,7 +6,7 @@ import { SlCalender } from "react-icons/sl";
 import { FiClock } from "react-icons/fi";
 import { MdOutlineMan4 } from "react-icons/md";
 import { BsPencilSquare } from "react-icons/bs";
-import CancelReservation from "../CancelReservation/page";
+import CancelReservation from "../CancelReservation";
 import axios from "axios";
 
 const ConfirmReservation = ({ bookingData, closePopup }) => {

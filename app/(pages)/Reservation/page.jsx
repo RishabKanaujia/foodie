@@ -4,9 +4,7 @@ import React, { useState } from "react";
 import Navbar from "../../_components/Navbar";
 import Footer from "../../_components/Footer";
 import axios from "axios";
-
-import { useRouter } from "next/navigation";
-import ReservationDetails from "../ReservationDetails/page";
+import ReservationDetails from "../../_components/ReservationDetails";
 
 const Reservation = () => {
   const [date, setDate] = useState("");
@@ -41,7 +39,7 @@ const Reservation = () => {
     // console.log({ date, time, partySize });
   };
 
-  const router = useRouter();
+
   const closePopup = () => {
     setShowReservation(false);
   };

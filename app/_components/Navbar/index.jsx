@@ -27,7 +27,7 @@ const Navbar = () => {
               <Link href="/Menu">Menu</Link>
             </li>
             <li className="hover:text-[#f54748] hover:underline underline-offset-8">
-              <Link href="/About us">About us</Link>
+              <Link href="/About">About us</Link>
             </li>
             <li className="hover:text-[#f54748] hover:underline underline-offset-8">
               <Link href="/Order online">Order online</Link>
@@ -36,7 +36,7 @@ const Navbar = () => {
               <Link href="/Reservation">Reservation</Link>
             </li>
             <li className="hover:text-[#f54748] hover:underline underline-offset-8">
-              <Link href="/Contact us">Contact us</Link>
+              <Link href="/Contact">Contact us</Link>
             </li>
           </ul>
           <div className="flex gap-4">

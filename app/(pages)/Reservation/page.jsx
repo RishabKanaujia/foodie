@@ -57,45 +57,45 @@ const Reservation = () => {
             src="https://images.unsplash.com/photo-1511690656952-34342bb7c2f2?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
             alt=""
           />
-          <div className="flex flex-col gap-8">
+          <div className="flex flex-col gap-4">
             <h1 className="text-[70px] font-bold text-[#311f09] ">
               Book a table
             </h1>
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form onSubmit={handleSubmit} className="space-y-5">
               <div>
-                <label className="block text-gray-700">Date</label>
+                <label className="block text-[20px] font-medium text-gray-700">Date</label>
                 <input
                   type="date"
                   value={date}
                   onChange={(e) => setDate(e.target.value)}
-                  className="w-full p-2 border border-gray-300 rounded mt-1"
+                  className="w-full border border-gray-300 rounded-[15px] mt-1 p-4"
                   required
                 />
               </div>
               <div>
-                <label className="block text-gray-700">Time</label>
+                <label className="block text-[20px] font-medium text-gray-700">Time</label>
                 <input
                   type="time"
                   value={time}
                   onChange={(e) => setTime(e.target.value)}
-                  className="w-full p-2 border border-gray-300 rounded mt-1"
+                  className="w-full p-4 border border-gray-300 rounded-[15px] mt-1"
                   required
                 />
               </div>
               <div>
-                <label className="block text-gray-700">Party Size</label>
+                <label className="block text-[20px] font-medium text-gray-700">Party Size</label>
                 <input
                   type="number"
                   value={partySize}
                   onChange={(e) => setPartySize(e.target.value)}
-                  className="w-full p-2 border border-gray-300 rounded mt-1"
+                  className="w-full p-4 border border-gray-300 rounded-[15px] mt-1"
                   min="1"
                   required
                 />
               </div>
               <button
                 type="submit"
-                className="w-full bg-[#f54748] text-white p-2 rounded !mt-5 transition duration-200"
+                className="w-full bg-[#f54748] text-[25px] font-semibold p-6 text-white rounded-[15px] !mt-11 transition duration-200"
               >
                 Submit
               </button>

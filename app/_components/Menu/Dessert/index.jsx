@@ -17,7 +17,7 @@ const Dessert = ({ foodDataDessertList }) => {
   };
 
   const handleNext = () => {
-    if (endIndex < foodDataList.length) {
+    if (endIndex < foodDataDessertList.length) {
       setCurrentPage(currentPage + 1);
     }
   };

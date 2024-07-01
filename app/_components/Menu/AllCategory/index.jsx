@@ -28,7 +28,7 @@ const AllCategory = ({ foodDataList }) => {
             return (
               <div
                 key={index}
-                className="bg-white py-8 flex flex-col justify-start items-center gap-5 rounded-[40px] h-[580px] w-[304px]"
+                className="bg-white py-8 flex flex-col justify-start items-center gap-5 rounded-[40px] h-[580px] w-[304px] relative"
               >
                 <img
                   // width={250} height={250}
@@ -39,11 +39,11 @@ const AllCategory = ({ foodDataList }) => {
                 <h2 className="text-[30px] font-semibold text-[#311f09] ">
                   {item.dishName}
                 </h2>
-                <p className="text-center text-[14px] font-normal text-[#59442b]">
+                <p className="text-center text-[14px] font-normal text-[#59442b] px-4">
                   {item.discription}
                 </p>
-                <p className="">rating star</p>
-                <div className="flex justify-around items-center w-full">
+                {/* <p className="">rating star</p> */}
+                <div className="flex justify-around items-center w-full absolute bottom-6">
                   <p className="text-[25px] font-semibold">{item.price}</p>
                   <button className="bg-[#f54748] rounded-[8px] font-medium text-[16px] text-white h-[45px] px-6">
                     Order now

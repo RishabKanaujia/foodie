@@ -13,6 +13,14 @@ export async function getFoodData(){
   return data;
   }
 export async function getFoodDataDinner(){
-  const data = await food.find({category:'dinner'})
+  const data = await food.find({category:'Dinner'}).lean()
+  return data;
+  }
+export async function getFoodDataLunch(){
+  const data = await food.find({category:'Lunch'}).lean()
+  return data;
+  }
+export async function getFoodDataDessert(){
+  const data = await food.find({category:'Dessert'}).lean()
   return data;
   }

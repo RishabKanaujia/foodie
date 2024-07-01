@@ -6,7 +6,7 @@ import Lunch from "./Lunch";
 import Dessert from "./Dessert";
 import AllCategory from "./AllCategory";
 
-const Menu = ({ foodDataList, foodDataDinnerList }) => {
+const Menu = ({ foodDataList, foodDataDinnerList, foodDataLunchList, foodDataDessertList }) => {
   const [selectCategory, setSelectCategory] = useState("all");
 
   const handleClick = (category) => {
@@ -59,8 +59,8 @@ const Menu = ({ foodDataList, foodDataDinnerList }) => {
           <AllCategory foodDataList={foodDataList} />
         )}
         {selectCategory === "dinner" && <Dinner foodDataDinnerList={foodDataDinnerList} />}
-        {selectCategory === "lunch" && <Lunch />}
-        {selectCategory === "dessert" && <Dessert />}
+        {selectCategory === "lunch" && <Lunch foodDataLunchList={foodDataLunchList} />}
+        {selectCategory === "dessert" && <Dessert foodDataDessertList={foodDataDessertList} />}
       </div>
     </>
   );

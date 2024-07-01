@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-mongoose.connect("mongodb+srv://rishabkanaujia2002:1234@short-url.unjvilu.mongodb.net/foodDb")
+mongoose.connect(process.env.REACT_APP_MONGO_URI)
 const bookingSchema = new mongoose.Schema(
   {},{ strict: false }
 )

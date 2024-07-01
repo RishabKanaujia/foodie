@@ -1,22 +1,32 @@
-'use client'
+"use client";
 
 import Link from "next/link";
-import Logo from '/public/Logo/logo.svg'
+import Logo from "/public/Logo/logo.svg";
 import Image from "next/image";
-import { useRouter } from 'next/navigation'
+import { useRouter } from "next/navigation";
+// import {
+//   RegisterLink,
+//   LoginLink,
+// } from "@kinde-oss/kinde-auth-nextjs/components";
+// import {
+//   getKindeServerSession,
+//   LogoutLink,
+// } from "@kinde-oss/kinde-auth-nextjs/server";
 
 const Navbar = () => {
-
-  const router = useRouter()
+  // const { isAuthenticated } = getKindeServerSession();
+  const router = useRouter();
 
   return (
     <>
       <div className="py-10 ">
         <nav className="flex justify-center gap-20 cursor-pointer">
-          <Image width={100} height={100}
+          <Image
+            width={100}
+            height={100}
             className="w-fit h-fit"
             src={Logo}
-            onClick={() => router.push('/')}
+            onClick={() => router.push("/")}
           />
 
           <ul className="flex gap-5 justify-center text-[#311f09cc] items-center text-[16px] font-normal">
@@ -41,9 +51,12 @@ const Navbar = () => {
           </ul>
           <div className="flex gap-4">
             <button className="rounded-full bg-white shadow-xl p-7"></button>
-            <button className="bg-[#f54748] px-8 rounded-[16px] text-[14px] text-white font-semibold">
-              Log in
+            <button className="bg-[#f54748] px-8 rounded-[16px] text-[16px] text-white font-semibold">
+              <Link href="/Login">Log in</Link>
+              
+              {/* <LoginLink>Log in</LoginLink> */}
             </button>
+            {/* {isAuthenticated && <LogoutLink>log out</LogoutLink>} */}
           </div>
         </nav>
       </div>

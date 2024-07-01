@@ -6,7 +6,7 @@ import ChefPage from "./_components/ChefPage";
 import Review from "./_components/Review";
 import OpenCard from "./_components/OpenCard";
 import Footer from "./_components/Footer";
-import { getFoodData, getFoodDataDinner } from "./api/foodEntry/route";
+import { getFoodData, getFoodDataDinner, getFoodDataLunch, getFoodDataDessert } from "./api/foodEntry/route";
 import { getReviewData } from "./api/contactUs/route";
 
 export default async function Home() {
@@ -14,6 +14,8 @@ export default async function Home() {
   const foodDataList = await getFoodData()
   const reviewDataList = await getReviewData()
   const foodDataDinnerList = await getFoodDataDinner()
+  const foodDataLunchList = await getFoodDataLunch()
+  const foodDataDessertList = await getFoodDataDessert()
 
   return (
     <>
@@ -23,7 +25,7 @@ export default async function Home() {
       </div>
       <div className="bg-[#F9F9F9]">
         <FavDish />
-        <Menu foodDataList={foodDataList} foodDataDinnerList={foodDataDinnerList} />
+        <Menu foodDataList={foodDataList} foodDataDinnerList={foodDataDinnerList} foodDataLunchList={foodDataLunchList} foodDataDessertList={foodDataDessertList}/>
         <ChefPage />
         <Review reviewDataList={reviewDataList} />
         <OpenCard />

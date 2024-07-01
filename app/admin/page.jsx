@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 
 const Admin = () => {
   const [name, setName] = useState("");
@@ -10,16 +11,25 @@ const Admin = () => {
   const [imageUrl, setImageUrl] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
 
+  const router = useRouter();
+
   const handleSaveProduct = async (event) => {
     event.preventDefault();
-    await axios.post("/api/foodEntry", {
-      dishName: name,
-      price: price,
-      discription: description,
-      Food_image: imageUrl,
-      category: selectedCategory
-    });
-    //  console.log(name,price,description,imageUrl)
+    try {
+      await axios.post("/api/foodEntry", {
+        dishName: name,
+        price: price,
+        discription: description,
+        Food_image: imageUrl,
+        category: selectedCategory,
+      });
+      alert("Food details saved");
+      // Redirect to home page after the alert
+      router.push("/");
+    } catch (error) {
+      console.error("Error saving food details:", error);
+      alert("Error saving food details. Please try again.");
+    }
   };
   return (
     <>
@@ -120,9 +130,9 @@ const Admin = () => {
                   Select a category
                 </option>
                 <option value="all-category">All Category</option>
-                <option value="dinner">Dinner</option>
-                <option value="lunch">Lunch</option>
-                <option value="dessert">Dessert</option>
+                <option value="Dinner">Dinner</option>
+                <option value="Lunch">Lunch</option>
+                <option value="Dessert">Dessert</option>
               </select>
               <button className="btn-shadow  text-black rounded-full w-[120px] h-fit m-5 p-4  border border-black text-[0.9em]">
                 Close

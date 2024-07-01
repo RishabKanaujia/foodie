@@ -4,17 +4,9 @@ import Link from "next/link";
 import Logo from "/public/Logo/logo.svg";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-// import {
-//   RegisterLink,
-//   LoginLink,
-// } from "@kinde-oss/kinde-auth-nextjs/components";
-// import {
-//   getKindeServerSession,
-//   LogoutLink,
-// } from "@kinde-oss/kinde-auth-nextjs/server";
 
 const Navbar = () => {
-  // const { isAuthenticated } = getKindeServerSession();
+
   const router = useRouter();
 
   return (
@@ -53,10 +45,9 @@ const Navbar = () => {
             <button className="rounded-full bg-white shadow-xl p-7"></button>
             <button className="bg-[#f54748] px-8 rounded-[16px] text-[16px] text-white font-semibold">
               <Link href="/Login">Log in</Link>
-              
-              {/* <LoginLink>Log in</LoginLink> */}
+
             </button>
-            {/* {isAuthenticated && <LogoutLink>log out</LogoutLink>} */}
+
           </div>
         </nav>
       </div>

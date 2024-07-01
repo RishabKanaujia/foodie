@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 
 const Dinner = ({ foodDataDinnerList }) => { 
-  console.log(foodDataDinnerList)
+  // console.log(foodDataDinnerList)
   const [currentPage, setCurrentPage] = useState(0);
   const itemsPerPage = 6;
   const startIndex = currentPage * itemsPerPage;

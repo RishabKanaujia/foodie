@@ -8,7 +8,8 @@ import OpenCard from "./_components/OpenCard";
 import Footer from "./_components/Footer";
 import { getFoodData, getFoodDataDinner, getFoodDataLunch, getFoodDataDessert } from "./api/foodEntry/route";
 import { getReviewData } from "./api/contactUs/route";
-export const fetchCache = 'force-no-store';
+export const revalidate = 0;
+
 export default async function Home() {
 
   const foodDataList = await getFoodData()

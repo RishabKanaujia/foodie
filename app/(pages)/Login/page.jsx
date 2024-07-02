@@ -1,7 +1,26 @@
+"use client"
+
 import React from 'react'
 import Link from 'next/link'
+import { doSignInWithGoogle } from '@/app/_components/Firebase/auth'
+import { useRouter } from "next/navigation";
+
 
 const Login = () => {
+  const router = useRouter();
+// console.log("hgjj",process.env.REACT_APP_API_KEY)
+const googleLogin = async (e) => {
+  e.preventDefault();
+  try {
+    await doSignInWithGoogle();
+    router.push("/");
+  } catch (error) {
+    console.log(setShowError(true))
+  }
+ 
+};
+
+
   return (
     <>
     <div className="flex flex-col items-center justify-center h-screen">
@@ -31,7 +50,7 @@ const Login = () => {
     <h4 className="mb-3 text-center">OR</h4>
     <button
       type="button"
-    //   onClick={googleLogin}
+      onClick={googleLogin}
       className="p-2 bg-red-500 text-white rounded-md hover:bg-red-700"
     >
       Sign In with Google
